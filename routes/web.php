@@ -16,14 +16,17 @@ use App\Http\Controllers\PedidoController;
 |
 */
 
-# Rotas: Home
-Route::get('/', [HomeController::class, 'abrirHome'])->name('home');
+// # Rotas: Home
+// Route::get('/', [HomeController::class, 'abrirHome'])->name('home');
 
 # Rotas: Pedidos
-Route::get('/pedidos', [PedidoController::class, 'abrirPedidos'])->name('pedidos.index');
+Route::get('/', [PedidoController::class, 'abrirPedidos'])->name('pedidos.index');
+
 Route::get('/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
-Route::post('/pedidos/ad', [PedidoController::class, 'abrirPedidos'])->name('pedidos.store');
-Route::get('/pedidos/creatasasdae', [PedidoController::class, 'abrirPedidos'])->name('pedidos.edit');
-Route::post('/pedidos/creasdaddate', [PedidoController::class, 'abrirPedidos'])->name('pedidos.update');
-Route::get('/pedidos/asdsad', [PedidoController::class, 'abrirPedidos'])->name('pedidos.destroy');
+Route::post('/pedidos/store', [PedidoController::class, 'store'])->name('pedidos.store');
+
+Route::get('/pedidos/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');
+Route::post('/pedidos/update/{id}', [PedidoController::class, 'update'])->name('pedidos.update');
+
+Route::get('/pedidos/destroy/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
 

@@ -24,21 +24,15 @@
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{route('home')}}">Incício</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pedidos.index') }}">Pedidos</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('pedidos.create') }}">Novo Pedido</a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{route('pedido.edit')}}">Atualizar Pedido</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('pedido.destroy')}}">Deletar Pedido</a>
-                </li> --}}
               </ul>
             </div>
           </div>

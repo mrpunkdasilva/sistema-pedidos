@@ -5,16 +5,16 @@
     <div class="row mt-3">
         <div class="col-sm-10 mx-auto">
 
-            @if(session('msg'))
-              <div class="alert alert-warning">
-                {{ session('msg') }}
-              </div>
+            @if(session('message'))
+            <div class="alert alert-warning">
+                {{ session('message') }}
+            </div>
             @endif
 
             <div class="card">
                 <div class="card-header">
                     Consulta de Pedidos
-                    {{-- <a href="{{route('pedidos.store')}}" class="btn btn-success btn-sm float-end"> --}}
+                    <a href="{{route('pedidos.create')}}" class="btn btn-success btn-sm float-end">
                         <i class="fa fa-plus"></i>
                         Novo Usuário
                     </a>
@@ -30,6 +30,7 @@
                                 <th scope="col">Data Atual</th>
                                 <th scope="col">Data Entrega</th>
                                 <th scope="col">Descrição Serviço</th>
+                                <th>Ações</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,17 +39,26 @@
                                 <th>
                                     {{ $pedido->id }}
                                 </th>
-                                <th>
+                                <td>
                                     {{ $pedido->cliente }}
-                                </th>
-                                <th>
-                                    {{ $pedido->data_atual }}
-                                </th>
-                                <th>
-                                    {{ $pedido->data_entrega }}
-                                </th>
-                                <th>
+                                </td>
+                                <td>
+                                    {{ date('d-m-Y', strtotime($pedido->data_atual)) }}
+                                </td>
+                                <td>
+                                    {{ date('d-m-Y', strtotime($pedido->data_entrega)) }}
+                                </td>
+                                <td>
                                     {{ $pedido->descricao_servico }}
+                                </td>
+                                <th>
+                                    <a href="{{ route('pedidos.edit', $pedido->id) }}">
+                                        Editar
+                                    </a>
+                                    <br><br>
+                                    <a href="{{ route('pedidos.destroy', $pedido->id) }}">
+                                        Deletar
+                                    </a>
                                 </th>
                             </tr>
                             @endforeach
