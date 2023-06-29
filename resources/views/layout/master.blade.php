@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <title>Sistema de Pedidos</title>
 </head>
-<body>
+<body
+    style="background: #e0dcdc;"
+>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Sistema de Pedidos</a>
@@ -24,9 +26,6 @@
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                {{-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{route('home')}}">Incício</a>
-                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pedidos.index') }}">Pedidos</a>
                 </li>
