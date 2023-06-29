@@ -18,7 +18,7 @@ class PedidoController extends Controller
         return view('pedidos.create');
     }
 
-    public function edit(Request $request) {
+    public function edit(Request $request, $id) {
         if (isset($id)) {
             $pedido = Pedido::findOrFail($id);
             $data = [ 'pedido' => $pedido  ];
@@ -28,7 +28,7 @@ class PedidoController extends Controller
 
         return redirect()
             ->route('pedidos.index')
-            ->with('msg','Não há pedido!');
+            ->with('msg','Houve um erro!');
     }
 
     public function store(Request $request) {
@@ -71,14 +71,27 @@ class PedidoController extends Controller
             ]
         );
 
-        Pedido::create([
-            'cliente'           => $request->cliente,
-            'data_entrega'      => $request->data_entrega,
-            'descricao_servico' => $request->descricao_servico
-        ]);
+        $pedido = Pedido::findOrFail($request->id);
+
+        $pedido->cliente = $request->cliente;
+        $pedido->data_atual = $request->data_atual;
+        $pedido->data_entrega = $request->data_entrega;
+        $pedido->descricao_servico = $request->descricao_servico;
+
+        $pedido->update();
 
         return redirect()
             ->route('pedidos.index')
             ->with('msg','Pedido atualizados com sucesso!');
+    }
+
+    public function destroy($id) {
+        $pedido = Pedido::findOrFail($id);
+
+        $pedido->delete();
+
+        return redirect()
+            ->route('pedidos.index')
+            ->with('msg','Pedido deletado com sucesso!');
     }
 }

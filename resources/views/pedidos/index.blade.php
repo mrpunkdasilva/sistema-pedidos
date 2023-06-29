@@ -5,9 +5,9 @@
     <div class="row mt-3">
         <div class="col-sm-10 mx-auto">
 
-            @if(session('message'))
+            @if(session('msg'))
             <div class="alert alert-warning">
-                {{ session('message') }}
+                {{ session('msg') }}
             </div>
             @endif
 
@@ -56,7 +56,12 @@
                                         Editar
                                     </a>
                                     <br><br>
-                                    <a href="{{ route('pedidos.destroy', $pedido->id) }}">
+                                    <a href="{{ route('pedidos.destroy', $pedido->id) }}"
+                                        onclick="if (confirm('Deseja mesmo deletar?') === false) {
+                                            this.href = '#';
+                                        } else {
+                                            this.href = '{{ route('pedidos.destroy', $pedido->id) }}';
+                                        }">
                                         Deletar
                                     </a>
                                 </th>

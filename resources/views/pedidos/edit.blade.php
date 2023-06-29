@@ -12,8 +12,16 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('pedidos.store') }}" method="post">
+                    <form action="{{ route('pedidos.update') }}" method="get">
                         @csrf
+
+                        <input
+                            type="hidden"
+                            name="id"
+                            id="id"
+                            class="form-control"
+                            value="{{ $pedido->id }}"
+                        />
 
                         <div class="mb-2">
                             <label for="name">Cliente</label>
@@ -31,14 +39,13 @@
                         </div>
 
                         <div class="mb-2">
-                            {{-- <label for="email">Data Atual</label> --}}
+                            {{-- <label for="email">Data Entrega</label> --}}
                             <input
-                                type="date"
+                                type="hidden"
                                 name="data_atual"
                                 id="data_atual"
                                 class="form-control"
                                 value="{{ $pedido->data_atual }}"
-                                disabled
                             />
                         </div>
 
@@ -67,6 +74,7 @@
                                 value="{{ $pedido->descricao_servico }}"
                                 required
                             >
+                            {{ $pedido->descricao_servico }}
                             </textarea>
                             @error('descricao_servico')
                                 <small class="text-danger">{{$message}}</small>

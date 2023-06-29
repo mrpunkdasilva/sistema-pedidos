@@ -25,8 +25,8 @@ Route::get('/', [PedidoController::class, 'abrirPedidos'])->name('pedidos.index'
 Route::get('/pedidos/create', [PedidoController::class, 'create'])->name('pedidos.create');
 Route::post('/pedidos/store', [PedidoController::class, 'store'])->name('pedidos.store');
 
-Route::get('/pedidos/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');
-Route::post('/pedidos/update/{id}', [PedidoController::class, 'update'])->name('pedidos.update');
+Route::get('/pedidos/edit/{id}', [PedidoController::class, 'edit'])->name('pedidos.edit');
+Route::get('/pedidos/update', [PedidoController::class, 'update'])->name('pedidos.update');
 
 Route::get('/pedidos/destroy/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
 
