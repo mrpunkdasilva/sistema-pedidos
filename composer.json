@@ -47,7 +47,9 @@
             "@php artisan key:generate --ansi"
         ],
         "setup": [
-            "composer install",
+            "composer install"
+        ],
+        "db:start": [
             "php artisan migrate"
         ]
     },

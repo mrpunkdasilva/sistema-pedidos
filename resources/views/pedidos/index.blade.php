@@ -12,7 +12,20 @@
             @endif
 
             <div class="card">
+
                 <div class="card-header">
+                    <form action="" class="m-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Pesquisar">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary ml-2" type="button" style="margin-left: 10px;">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
                     Consulta de Pedidos
                     <a href="{{route('pedidos.create')}}" class="btn btn-success btn-sm float-end">
                         <i class="fa fa-plus"></i>
@@ -30,7 +43,7 @@
                                 <th scope="col">Data Atual</th>
                                 <th scope="col">Data Entrega</th>
                                 <th scope="col">Descrição Serviço</th>
-                                <th>Ações</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,17 +65,22 @@
                                     {{ $pedido->descricao_servico }}
                                 </td>
                                 <th>
-                                    <a href="{{ route('pedidos.edit', $pedido->id) }}">
-                                        Editar
+                                    <a
+                                        style="color: rgb(226, 195, 21);"
+                                        href="{{ route('pedidos.edit', $pedido->id) }}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <br><br>
-                                    <a href="{{ route('pedidos.destroy', $pedido->id) }}"
+
+                                    <a
+                                        style="color: rgb(240, 69, 69);"
+                                        href="{{ route('pedidos.destroy', $pedido->id) }}"
                                         onclick="if (confirm('Deseja mesmo deletar?') === false) {
                                             this.href = '#';
                                         } else {
                                             this.href = '{{ route('pedidos.destroy', $pedido->id) }}';
                                         }">
-                                        Deletar
+                                        <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </th>
                             </tr>

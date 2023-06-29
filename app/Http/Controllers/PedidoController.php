@@ -9,7 +9,7 @@ use App\Models\Pedido;
 class PedidoController extends Controller
 {
     public function abrirPedidos() {
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::orderBy('data_entrega', 'desc')->get();
 
         return view('pedidos.index', ['pedidos' => $pedidos]);
     }
