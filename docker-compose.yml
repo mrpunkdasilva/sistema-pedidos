@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  # PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sistema-pedidos-app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - sistema-pedidos-network
+
+  # Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: sistema-pedidos-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - sistema-pedidos-network
+
+  # MySQL Service
+  db:
+    image: mysql:5.7
+    container_name: sistema-pedidos-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: sistema_pedidos
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: sistema_pedidos
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - sistema-pedidos-network
+
+# Docker Networks
+networks:
+  sistema-pedidos-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
